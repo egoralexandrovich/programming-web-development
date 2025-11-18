@@ -10,9 +10,9 @@ public class BankAccount {
     Используем конструктор для создания экземпляра класса
     Представленный шаг позволит добавить на баланс начальную сумму
      */
-    public BankAccount(double InitialBalance) {
-        if (InitialBalance >= 0) {
-            this.balance = InitialBalance;
+    public BankAccount(double initialBalance) {
+        if (initialBalance >= 0) {
+            this.balance = initialBalance;
         }
         else {
             this.balance = 0;
@@ -20,7 +20,7 @@ public class BankAccount {
     }
 
     /*
-    Объявляем функцию для внесения депозита на банковский аккаунт
+    Объявляем Метод для внесения депозита на банковский аккаунт
      */
     public void deposit(double amount) {
         if (amount >= 0) {
@@ -33,20 +33,17 @@ public class BankAccount {
     }
 
     /*
-    Объявляем функцию для снятия денежных средств с баланса банковского аккаунта
+    Объявляем Метод для снятия денежных средств с баланса банковского аккаунта
+    В методе возвращаем значение по результатам выполнения платежа true / false
      */
-    public void withdraw(double amount) {
-        if (amount >= 0) {
-            if (balance - amount >= 0) {
-                balance -= amount;
-                System.out.println("С баланса была снята денежная сумма в размере: " + amount + " руб.");
-            }
-            else {
-                System.out.println("Недостаточно денежных средств на балансе! Процедура снятия не может быть выполнена!");
-            }
+    public boolean withdraw(double amount) {
+        if (amount >= 0 && balance - amount >= 0) {
+            balance -= amount;
+            System.out.println("С баланса была снята денежная сумма в размере: " + amount + " руб.");
+            return true;
         }
         else {
-            System.out.println("Ошибка снятия: 'Вы ввели отрицательное число при снятии денежных средств с баланса!'");
+            return false;
         }
     }
 

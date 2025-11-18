@@ -25,14 +25,14 @@ public class BankAccountManager {
             // Проверяем, что пользователь ввел значение в формате Int
             if (scanner.hasNextInt()) {
                 //Считываем введенное пользователем число и добавляем его в переменную
-                int InputValue = scanner.nextInt();
+                int inputValue = scanner.nextInt();
 
-                if (InputValue == 1) {
+                if (inputValue == 1) {
                     System.out.print("Введите сумму пополнения: ");
                     // Проверяем, что пользователь ввел значение в формате Double
                     if (scanner.hasNextDouble()) {
-                        double InputAmount = scanner.nextDouble();
-                        myAccount.deposit(InputAmount);
+                        double inputAmount = scanner.nextDouble();
+                        myAccount.deposit(inputAmount);
                     }
                     else {
                         System.out.println("Вы ввели не число! Попробуйте повторить попытку!");
@@ -40,12 +40,21 @@ public class BankAccountManager {
                     }
                 }
 
-                else if (InputValue == 2) {
+                else if (inputValue == 2) {
                     System.out.print("Введите сумму снятия: ");
                     // Проверяем, что пользователь ввел значение в формате Double
                     if (scanner.hasNextDouble()) {
-                        double InputAmount = scanner.nextDouble();
-                        myAccount.withdraw(InputAmount);
+                        double inputAmount = scanner.nextDouble();
+                        boolean successWithdraw = myAccount.withdraw(inputAmount);
+                        if (successWithdraw == true) {
+                            System.out.println("Выполнена операция снятия денежных средств с баланса в размере: " + inputAmount + " руб.");
+                        }
+                        else if (inputAmount <= 0) {
+                            System.out.println("Ошибка снятия: 'Вы ввели отрицательное число при снятии денежных средств баланса!'");
+                        }
+                        else {
+                            System.out.println("Недостаточно денег на балансе банковского счета!");
+                        }
                     }
                     else {
                         System.out.println("Вы ввели не число! Попробуйте повторить попытку!");
@@ -53,11 +62,11 @@ public class BankAccountManager {
                     }
                 }
 
-                else if (InputValue == 3) {
+                else if (inputValue == 3) {
                     myAccount.getBalance();
                 }
 
-                else if (InputValue == 4) {
+                else if (inputValue == 4) {
                     System.out.println("До свидания!");
                     scanner.close();
                     return; // Выходим из метода main
