@@ -6,14 +6,23 @@ public class Microwave {
     private double time;
     private final double RUN_TIME = 30;
 
-    // Метод для увеличения времени на 30 секунд
-    public double IncreaseTime(double click) {
-        time += RUN_TIME * click;
+    // Метод для доступа к значению time
+    public double getTime() {
         return time;
     }
 
+    // Метод для доступа к значению power
+    public int getPower() {
+        return power;
+    }
+
+    // Метод для увеличения времени на 30 секунд
+    public void IncreaseTime(double click) {
+        time += RUN_TIME * click;
+    }
+
     // Метод для изменения уровня мощности микроволновой печи
-    public int ChangeLevelPower(int power) {
+    public void ChangeLevelPower(int power) {
         this.power = power;
 
         if (power < 1) {
@@ -26,14 +35,11 @@ public class Microwave {
             System.out.println("В качестве параметра по умолчанию была установлена мощность равная 2!");
             this.power = 2;
         }
-
-        return this.power;
     }
 
     // Метод для сброса установленного таймера микроволновой печи
-    public double ResetTime() {
+    public void ResetTime() {
         time = 0;
-        return time;
     }
 
     // Метод для запуска установленного таймера в микроволновой печи
